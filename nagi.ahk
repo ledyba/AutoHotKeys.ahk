@@ -1,3 +1,30 @@
+; ToolWindow
+Gui, Add, Button, gDeselect, Deselect
+Gui, Add, Button, gLasso, Lasso
+Gui, Add, Button, gTransform, Transform
+Gui, Add, Button, gFill, Fill
+Gui, Add, Button, gSpoit, Spoit
+Deselect:
+  Gui, Show, Hide
+  Send, ^+a
+  Return
+Lasso:
+  Gui, Show, Hide
+  Send, +f
+  Return
+Transform:
+  Gui, Show, Hide
+  Send, ^t
+  Return
+Fill:
+  Gui, Show, Hide
+  Send, f
+  Return
+Spoit:
+  Gui, Show, Hide
+  Send, p
+  Return
+
 #IfWinActive, ahk_exe krita.exe
 
 ; Brushes
@@ -24,9 +51,13 @@ Numpad3::Send, b^!3
 Numpad2::Send, b^!4
 Numpad4::Send, b^!6
 Numpad6::Send, b^!5
-Numpad8::Send, p
+Numpad8::Send, ^+p
 
-; Brush Resize
-Numpad5::r
+; Menu
+Numpad5::
+  CoordMode, mouse, Screen
+  MouseGetPos, xPos, yPos
+  Gui, Show, AutoSize x%xPos% y%yPos%, Tools
+  Return
 
 #IfWinActive
